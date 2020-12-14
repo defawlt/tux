@@ -1,5 +1,4 @@
 import styled, {css} from 'styled-components'
-import '../../SCSS/App.scss'
 
 export const NavLink = styled.a`
   color: var(--text-color);
