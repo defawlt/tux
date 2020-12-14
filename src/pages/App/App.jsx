@@ -49,8 +49,7 @@ class App extends Component {
           path="/"
           render={() => (user ? <User user={user} /> : <Landing />)}
         />
-
-        {/* // Signup & Login Routes */}
+          {/* // Signup & Login Routes */}
         <Route
           exact
           path="/signup"
@@ -85,6 +84,7 @@ class App extends Component {
           exact path="/corytestingground" 
           render={() => <CoryTestingGround />} />
       </>
+
     );
   }
 }
