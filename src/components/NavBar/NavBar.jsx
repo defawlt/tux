@@ -28,6 +28,12 @@ const NavBar = ({ user, handleLogout }) => {
           <N.NavLink  href="/signup">
             Sign Up
           </N.NavLink>
+          <N.NavLink  href="/manager-dashboard">
+            Manager
+          </N.NavLink>
+          <N.NavLink  href="/activity/heuristics">
+            Heuristics
+          </N.NavLink>
         </N.NavRow2>
         </N.Nav>
         
