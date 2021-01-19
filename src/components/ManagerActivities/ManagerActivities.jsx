@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as U from '../../components/TuxComponents/UniversalComponents';
 import activityAPI from '../../services/activityService';
-import InviteModal from '../../components/InviteModal/InviteModal';
+// import InviteModal from '../../components/InviteModal/InviteModal';
+import ActivityInvite from '../ActivityInvite/ActivityInvite';
 
 const ManagerActivities = ({
   groups,
@@ -20,20 +21,25 @@ const ManagerActivities = ({
   }, []);
 
   // Modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [isOpen, setIsOpen] = useState(false)
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
   return (
     <>
-      <InviteModal
+    <ActivityInvite
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+    />
+      {/* <InviteModal
         show={show}
         handleClose={handleClose}
         groups={groups}
         setGroups={setGroups}
         selectedGroupIndex={selectedGroupIndex}
         setSelectedGroupIndex={setSelectedGroupIndex}
-      />
+      /> */}
       <U.FlexBox bordered managerDash column>
         <U.ColorBlock SubGridBlue></U.ColorBlock>
         <U.Heading3 alignLeft bolder>
@@ -51,7 +57,9 @@ const ManagerActivities = ({
                   </U.Normal>
                 </U.FlexBox>
                 <U.FlexBox alignRight>
-                  <U.WideBtn preview onClick={handleShow}>
+                  <U.WideBtn preview 
+                    onClick={() => setIsOpen(!isOpen)}  
+                  >
                     Assign
                   </U.WideBtn>
                   {/* <U.NakedBtn preview>Preview</U.NakedBtn> */}

@@ -15,10 +15,13 @@ export const TuxFlower = styled.img`
     position: absolute;
     top: 100px;
 	border-radius: 50%;
-    /* box-shadow: 2px 2px 5px #dddddd; */
     
     ${props => props.center && css`
         left: 100px;
+    `}
+
+    ${props => props.invite && css`
+        top: 130px;
     `}
 `;
 
@@ -33,7 +36,6 @@ export const LoginBox = styled.div`
     box-shadow: var(--common-shadow);
     border-radius: 10px;
     margin-top: 120px;
-    /* clip-path: circle(25% at 50% 0); */
 
     ${props => props.wide && css`
       width: 785px;
@@ -52,13 +54,18 @@ export const LoginBox = styled.div`
     ${props => props.general && css`
         margin-top: 120px;
     `}
+
+    ${props => props.invite && css`
+        width: 515px;
+        height: 585px;
+    `}
 `;
 
 export const GoogleG = styled.img`
     width: 35px;
     height: 35px;
     margin: 20px;
-    `;
+`;
 
 export const GoogleBox = styled.a`
     width: 343px;

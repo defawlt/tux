@@ -366,16 +366,19 @@ export const Normal = styled.p`
 	text-align: center;
   `}
 
-  ${props => props.center && css`
-  	text-align: center;
-  `}
-
   ${props => props.marginLeft && css`
   margin-left: 45px;
   `}
 
   ${props => props.margin50 && css`
     	margin-top: 50px;
+	`}
+
+	${props => props.invite && css`
+		font-size: 20px;
+		line-height: 30px;
+		color: var(--tux-grey);
+		text-align: left;
 	`}
 `;
 
@@ -410,6 +413,14 @@ export const Heading3 = styled.h3`
 	${props => props.greyed && css`
 		color: var(--future);
 	`}
+
+	${props => props.invite && css`
+		font-size: 36px;
+		line-height: 54px;
+		color: #666;
+		margin-top: 25px;
+	`}
+
 	${props => props.progress && css`
 		margin-left: auto;
 		font: var(--pop-semi-bold);
