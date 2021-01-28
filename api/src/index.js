@@ -5,6 +5,7 @@ import neo4j from 'neo4j-driver'
 import { makeAugmentedSchema } from 'neo4j-graphql-js'
 import dotenv from 'dotenv'
 import { initializeDatabase } from './initialize'
+import { verifyAuthToken } from './controllers/userController'
 
 // set environment variables from .env
 dotenv.config()
@@ -73,7 +74,18 @@ init(driver)
  * generated resolvers to connect to the database.
  */
 const server = new ApolloServer({
-  context: { driver, neo4jDatabase: process.env.NEO4J_DATABASE },
+  context: async ({ req }) => {
+    // req.headers.authorization has the onsuccess token
+    // console.log(req.headers.authorization)
+
+    const googleUser = await verifyAuthToken(req.headers.authorization)
+    console.log('googleUser', googleUser)
+    return {
+      driver,
+      neo4jDatabase: process.env.NEO4J_DATABASE,
+      // cypherParams: { currentUserId: req.user.id },
+    }
+  },
   schema: schema,
   introspection: true,
   playground: true,

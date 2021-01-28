@@ -24,14 +24,14 @@ type User {
   email: String
   userPermissions: Int
   avatar: String
-  assignments: [Assignment] 
+  assignments: [Assignment]
 }
 
 type Assignment {
   assignmentId: ID!
   activityId: ID!
   isComplete: Boolean
-  # sessions: [Session] 
+  # sessions: [Session]
 }
 
 type Activity {
@@ -40,12 +40,10 @@ type Activity {
   topic: String
   time: Int
   links: [JSON]
-  # Here sections refers to the sections that are hardcoded in the activity. In Session, the sections refer to the Section type def which 
-  # references the 
+  # Here sections refers to the sections that are hardcoded in the activity. In Session, the sections refer to the Section type def which
+  # references the
   # sections: Object
 }
-
-
 
 # type Session {
 #   sessionId: ID!
@@ -72,6 +70,15 @@ type Activity {
 #   isCorrect: Boolean
 # }
 
-# Mutations 
+# Mutations
 
 # Queries
+# type Query {
+#   currentUser: User
+#     @cypher(
+#       statement: """
+#       MATCH (u:User {googleId: $cypherParams.currentUserId})
+#       RETURN u
+#       """
+#     )
+# }
