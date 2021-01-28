@@ -1,64 +1,77 @@
+# const { GraphQLScalarType, Kind } = require('graphql');
+# import { GraphQLJSON} from 'graphql-scalars'
+
+scalar JSON
+
+type Group {
+  groupId: ID!
+  name: String
+  createdBy: ID!
+  invited: [Invite]
+  users: [User]
+}
+
+type Invite {
+  inviteId: ID!
+  email: String
+  signedUp: Boolean
+}
+
 type User {
   userId: ID!
+  googleId: String
   name: String
-  reviews: [Review] @relation(name: "WROTE", direction: "OUT")
-  avgStars: Float
-    @cypher(
-      statement: "MATCH (this)-[:WROTE]->(r:Review) RETURN toFloat(avg(r.stars))"
-    )
-  numReviews: Int
-    @cypher(statement: "MATCH (this)-[:WROTE]->(r:Review) RETURN COUNT(r)")
-  recommendations(first: Int = 3): [Business]
-    @cypher(
-      statement: "MATCH (this)-[:WROTE]->(r:Review)-[:REVIEWS]->(:Business)<-[:REVIEWS]-(:Review)<-[:WROTE]-(:User)-[:WROTE]->(:Review)-[:REVIEWS]->(rec:Business) WHERE NOT EXISTS( (this)-[:WROTE]->(:Review)-[:REVIEWS]->(rec) ) WITH rec, COUNT(*) AS num ORDER BY num DESC LIMIT $first RETURN rec"
-    )
+  email: String
+  userPermissions: Int
+  avatar: String
+  assignments: [Assignment] 
 }
 
-type Business {
-  businessId: ID!
-  name: String!
-  address: String
-  city: String
-  state: String
-  location: Point
-  avgStars: Float
-    @cypher(
-      statement: "MATCH (this)<-[:REVIEWS]-(r:Review) RETURN coalesce(avg(r.stars),0.0)"
-    )
-  reviews: [Review] @relation(name: "REVIEWS", direction: "IN")
-  categories: [Category] @relation(name: "IN_CATEGORY", direction: "OUT")
+type Assignment {
+  assignmentId: ID!
+  activityId: ID!
+  isComplete: Boolean
+  # sessions: [Session] 
 }
 
-type Review {
-  reviewId: ID!
-  stars: Float
-  text: String
-  date: Date
-  business: Business @relation(name: "REVIEWS", direction: "OUT")
-  user: User @relation(name: "WROTE", direction: "IN")
+type Activity {
+  activityId: ID!
+  name: String
+  topic: String
+  time: Int
+  links: [JSON]
+  # Here sections refers to the sections that are hardcoded in the activity. In Session, the sections refer to the Section type def which 
+  # references the 
+  # sections: Object
 }
 
-type Category {
-  name: ID!
-  businesses: [Business] @relation(name: "IN_CATEGORY", direction: "IN")
-}
 
-type RatingCount {
-  stars: Float!
-  count: Int!
-}
 
-type Mutation {
-  mergeBusinessCategory(categories: [String!]!, businessId: ID!): Business
-    @cypher(
-      statement: "MATCH (b:Business {businessId: $businessId}) UNWIND $categories AS cat MERGE (c:Category {name: cat}) MERGE (b)-[:IN_CATEGORY]->(c) RETURN b"
-    )
-}
+# type Session {
+#   sessionId: ID!
+#   userId: ID!
+#   activityId: ID!
+#   # dateStarted: Date
+#   isComplete: Boolean
+#   totalSessionTime: Int
+#   responseSections: [ResponseSection]
+# }
 
-type Query {
-  userCount: Int! @cypher(statement: "MATCH (u:User) RETURN COUNT(u)")
-  ratingsCount: [RatingCount]
-    @cypher(
-      statement: "MATCH (r:Review) WITH r.stars AS stars, COUNT(*) AS count ORDER BY stars RETURN {stars: stars, count: count}"
-    )
-}
+# type ResponseSection {
+#   name: String
+#   totalTimeOnSection: Int
+#   responseModules: [ResponseModule]
+# }
+
+# type ResponseModule {
+#   type: String
+#   totalTimeOnModule: Int
+#   timeToAnswer: Int
+#   problemStatement: String
+#   selectedAnswers: String
+#   isCorrect: Boolean
+# }
+
+# Mutations 
+
+# Queries
