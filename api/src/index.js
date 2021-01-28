@@ -5,6 +5,7 @@ import neo4j from 'neo4j-driver'
 import { makeAugmentedSchema } from 'neo4j-graphql-js'
 import dotenv from 'dotenv'
 import { initializeDatabase } from './initialize'
+import { verifyAuthToken } from './controllers/userController'
 
 // set environment variables from .env
 dotenv.config()
@@ -73,7 +74,20 @@ init(driver)
  * generated resolvers to connect to the database.
  */
 const server = new ApolloServer({
-  context: { driver, neo4jDatabase: process.env.NEO4J_DATABASE },
+  context: async ({ req }) => {
+    // verify the token with verifyAuthToken
+
+    const googleUser = req.headers.authorization
+      ? await verifyAuthToken(req.headers.authorization)
+      : 123
+
+    return {
+      driver,
+      neo4jDatabase: process.env.NEO4J_DATABASE,
+      // googleUser.sub seems to be a unique id, it doesnt return a property explicity labeled as id. The sub value is being sent as the googleId to the cypher query.
+      cypherParams: { currentUserId: googleUser.sub },
+    }
+  },
   schema: schema,
   introspection: true,
   playground: true,
@@ -93,3 +107,5 @@ server.applyMiddleware({ app, path })
 app.listen({ host, port, path }, () => {
   console.log(`GraphQL server ready at http://${host}:${port}${path}`)
 })
+
+// 106680224941904190463'
