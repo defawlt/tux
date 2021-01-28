@@ -76,9 +76,9 @@ type Activity {
 # type Query {
 #   currentUser: User
 #     @cypher(
-#       statement: """
+#       statement: "
 #       MATCH (u:User {googleId: $cypherParams.currentUserId})
 #       RETURN u
-#       """
+#       "
 #     )
 # }
