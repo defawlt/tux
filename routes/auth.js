@@ -26,8 +26,8 @@ router.get(
   ), function (req, res) {
     console.log('AUTHENTICATED USER', req.user)
     res.redirect(
-      // 'http://localhost:3000/activity/heuristics'
-      'http://tux-staging.herokuapp.com/activity/heuristics'
+      'http://localhost:3000/activity/heuristics'
+      // 'http://tux-staging.herokuapp.com/activity/heuristics'
       )
   }
 );

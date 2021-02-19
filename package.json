@@ -55,5 +55,5 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://tux-staging.herokuapp.com"
+    "proxy": "http://localhost:3001"
 }
