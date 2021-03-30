@@ -1,0 +1,84 @@
+# const { GraphQLScalarType, Kind } = require('graphql');
+# import { GraphQLJSON} from 'graphql-scalars'
+
+scalar JSON
+
+type Group {
+  groupId: ID!
+  name: String
+  createdBy: ID!
+  invited: [Invite]
+  users: [User]
+}
+
+type Invite {
+  inviteId: ID!
+  email: String
+  signedUp: Boolean
+}
+
+type User {
+  userId: ID!
+  googleId: String
+  name: String
+  email: String
+  userPermissions: Int
+  avatar: String
+  assignments: [Assignment]
+}
+
+type Assignment {
+  assignmentId: ID!
+  activityId: ID!
+  isComplete: Boolean
+  # sessions: [Session]
+}
+
+type Activity {
+  activityId: ID!
+  name: String
+  topic: String
+  time: Int
+  links: [JSON]
+  # Here sections refers to the sections that are hardcoded in the activity. In Session, the sections refer to the Section type def which
+  # references the
+  # sections: Object
+}
+
+# type Session {
+#   sessionId: ID!
+#   userId: ID!
+#   activityId: ID!
+#   # dateStarted: Date
+#   isComplete: Boolean
+#   totalSessionTime: Int
+#   responseSections: [ResponseSection]
+# }
+
+# type ResponseSection {
+#   name: String
+#   totalTimeOnSection: Int
+#   responseModules: [ResponseModule]
+# }
+
+# type ResponseModule {
+#   type: String
+#   totalTimeOnModule: Int
+#   timeToAnswer: Int
+#   problemStatement: String
+#   selectedAnswers: String
+#   isCorrect: Boolean
+# }
+
+# Mutations
+
+# Queries
+# type Query {
+#   currentUser: User
+#     @cypher(
+#       statement: "
+#       MATCH (u:User {googleId: $cypherParams.currentUserId})
+#       RETURN u
+#       "
+#     )
+# }
