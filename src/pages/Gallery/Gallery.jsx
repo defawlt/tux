@@ -3,7 +3,8 @@ import React from "react";
 const Gallery = () => {
 	return (
 		<>
-			<h1>Cory rules</h1>
+			<h1>The Coop Component Gallery</h1>
+      <h2>Image Tile Goes Here</h2>
 		</>
 	);
 };
