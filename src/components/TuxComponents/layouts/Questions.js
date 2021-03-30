@@ -4,7 +4,6 @@ import Answer from '../Answer/Answer';
 import styled from 'styled-components';
 import { Flex, tux_blue, common_shadow } from '../TuxComponents/utilities';
 import * as U from '../TuxComponents/UniversalComponents';
-import * as A from '../TuxComponents/ActivitiesComponents';
 import { SessionContext } from '../../contexts/SessionContext';
 
 const Question = ({ details }) => {

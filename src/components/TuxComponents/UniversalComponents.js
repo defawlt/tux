@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FlexCenter, Flex } from './utilities';
 
 /*---------- Main Grid ----------*/
 export const Main = styled.main`
@@ -21,8 +22,7 @@ export const InfoBar = styled.section`
   grid-row: 1 / span 1;
   justify-self: stretch;
   background-color: var(--true-white);
-  display: flex;
-  align-items: center;
+  ${Flex({ai:'center'})};
   padding: 0 40px;
   max-width: 1440px;
 `;
@@ -56,9 +56,7 @@ export const SideBar = styled.article`
   grid-row: 1 / span 1;
   background-color: var(--true-white);
   height: calc(100vh - 159px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${Flex({ai:'center',fd:'column'})};
   border: var(--solid-border);
   border-radius: 5px 5px 0 0;
 `;
@@ -98,9 +96,7 @@ export const SideBarText = styled.button`
 
 /*---------- FlexBox Components Generic ----------*/
 export const FlexBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${FlexCenter};
 
   ${(props) =>
     props.spaceBetween &&
@@ -344,49 +340,6 @@ export const NakedBtn = styled.button`
   `}
 `;
 
-/*---------- Progress Bar ----------*/
-export const ProgressContainer = styled.div`
-  height: 22px;
-  width: 268px;
-  background-color: #666666;
-  background-image: linear-gradient(
-    45deg,
-    transparent 10%,
-    rgba(255, 255, 255, 0.2) 10%,
-    transparent 20%,
-    rgba(255, 255, 255, 0.2) 20%,
-    transparent 30%,
-    rgba(255, 255, 255, 0.2) 30%,
-    transparent 40%,
-    rgba(255, 255, 255, 0.2) 40%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.2) 50%,
-    transparent 60%,
-    rgba(255, 255, 255, 0.2) 60%,
-    transparent 70%,
-    rgba(255, 255, 255, 0.2) 70%,
-    transparent 80%,
-    rgba(255, 255, 255, 0.2) 80%,
-    transparent 90%,
-    rgba(255, 255, 255, 0.2) 90%,
-    transparent
-  );
-  border-radius: 5px;
-  display: flex;
-`;
-
-export const ProgressFiller = styled.div`
-  z-index: 1;
-  height: 100%;
-  border-radius: 5px 0 0 5px;
-  background-color: var(--tux-blue);
-`;
-export const ProgressLabel = styled.p`
-  padding: 2px;
-  font: 400 12px 'Poppins', sans-serif;
-  line-height: 24px;
-  color: #a9aaa5;
-`;
 
 /*---------- Links ----------*/
 export const LinkTo = styled(Link)`

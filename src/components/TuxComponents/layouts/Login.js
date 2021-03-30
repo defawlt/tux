@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import authService from '../../services/authService';
+import authService from '../../../services/authService';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom'
-import { Flex, common_shadow, pop_reg, pop_thick } from '../../components/TuxComponents/utilities';
-import { SmallInput, Button280 } from '../../components/TuxComponents/elements';
+import { Flex, common_shadow, pop_reg, pop_thick } from '../utilities';
+import { SmallInput, Button280 } from '../elements';
 // styled components for this Login comoponent are at the bottom
 
 class Login extends Component {
