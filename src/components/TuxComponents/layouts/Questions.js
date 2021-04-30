@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Feedback from '../Feedback/Feedback';
-import Answer from '../Answer/Answer';
+import Feedback from '../../Feedback/Feedback';
+import Answer from '../../Answer/Answer';
 import styled from 'styled-components';
-import { Flex, tux_blue, common_shadow } from '../TuxComponents/utilities';
-import * as U from '../TuxComponents/UniversalComponents';
-import { SessionContext } from '../../contexts/SessionContext';
+import { Flex, tux_blue, common_shadow } from '../utilities';
+import * as U from '../UniversalComponents';
+import { SessionContext } from '../../../contexts/SessionContext';
 
 const Question = ({ details }) => {
   const { response } = useContext(SessionContext);
