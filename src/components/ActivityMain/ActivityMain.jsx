@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { SessionContext } from '../../contexts/SessionContext';
 
 import * as U from '../../components/TuxComponents/UniversalComponents';
-import Question from '../../components/Question/Question';
+import Question from '../TuxComponents/layouts/Questions';
 import InjectHTML from '../../components/InjectHTML/InjectHTML';
 
 const ActivityMain = () => {
